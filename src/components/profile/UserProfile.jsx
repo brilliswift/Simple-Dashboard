@@ -1,10 +1,12 @@
 import { useTheme, getContainerClasses } from '../../hooks/useTheme';
 import { useUser, useNotificationToggle } from '../../hooks/useUser';
+import { getAccentColorClasses } from '../../constants/menuItems';
 
 export const UserProfile = () => {
   const { theme, accentColor } = useTheme();
   const { user, updateUser } = useUser();
   const { isNotificationsEnabled, toggleNotifications } = useNotificationToggle();
+  const accentClasses = getAccentColorClasses(accentColor);
   
   const handleNameChange = (e) => {
     updateUser({ name: e.target.value });
@@ -16,7 +18,7 @@ export const UserProfile = () => {
   
   return (
     <div className={getContainerClasses(theme)}>
-      <h2 className={`text-xl font-semibold mb-4 text-${accentColor}-600`}>
+      <h2 className={`text-xl font-semibold mb-4 ${accentClasses.text}`}>
         User Profile
       </h2>
       
@@ -76,3 +78,5 @@ export const UserProfile = () => {
     </div>
   );
 };
+
+export default UserProfile;
