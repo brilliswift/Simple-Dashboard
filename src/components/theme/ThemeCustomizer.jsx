@@ -42,3 +42,5 @@ export const ThemeCustomizer = () => {
     </div>
   );
 };
+
+export default ThemeCustomizer;
