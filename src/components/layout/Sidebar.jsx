@@ -1,8 +1,9 @@
 import { useTheme } from '../../hooks/useTheme';
-import { menuItems } from '../../constants/menuItems';
+import { menuItems, getAccentColorClasses } from '../../constants/menuItems';
 
 export const Sidebar = () => {
   const { theme, accentColor } = useTheme();
+  const accentClasses = getAccentColorClasses(accentColor);
   
   const handleMenuClick = (id) => {
     console.log(`Menu clicked: ${id}`);
@@ -15,7 +16,7 @@ export const Sidebar = () => {
         ? 'bg-white text-gray-800 shadow-md' 
         : 'bg-gray-800 text-white shadow-xl'
     }`}>
-      <h2 className={`text-lg font-semibold mb-4 text-${accentColor}-600`}>
+      <h2 className={`text-lg font-semibold mb-4 ${accentClasses.text}`}>
         Menu
       </h2>
       
@@ -38,5 +39,3 @@ export const Sidebar = () => {
     </aside>
   );
 };
-
-export default Sidebar;
