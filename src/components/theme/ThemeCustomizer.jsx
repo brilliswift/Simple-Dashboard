@@ -1,8 +1,9 @@
 import { useTheme, getContainerClasses } from '../../hooks/useTheme';
-import { accentColors } from '../../constants/menuItems';
+import { accentColors, getAccentColorClasses } from '../../constants/menuItems';
 
 export const ThemeCustomizer = () => {
   const { theme, accentColor, changeAccentColor } = useTheme();
+  const accentClasses = getAccentColorClasses(accentColor);
   
   const handleColorChange = (colorValue) => {
     changeAccentColor(colorValue);
@@ -10,7 +11,7 @@ export const ThemeCustomizer = () => {
   
   return (
     <div className={getContainerClasses(theme)}>
-      <h2 className={`text-xl font-semibold mb-4 text-${accentColor}-600`}>
+      <h2 className={`text-xl font-semibold mb-4 ${accentClasses.text}`}>
         Theme Customizer
       </h2>
       
@@ -26,7 +27,7 @@ export const ThemeCustomizer = () => {
                   accentColor === color.value 
                     ? 'border-gray-400 scale-110' 
                     : 'border-gray-300 hover:scale-105'
-                } bg-${color.value}-500`}
+                } ${color.classes.bg}`}
                 title={color.name}
                 aria-label={`Set accent color to ${color.name}`}
               />
@@ -42,5 +43,3 @@ export const ThemeCustomizer = () => {
     </div>
   );
 };
-
-export default ThemeCustomizer;
